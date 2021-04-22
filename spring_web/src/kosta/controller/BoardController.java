@@ -1,5 +1,6 @@
 package kosta.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import kosta.model.Board;
 import kosta.model.BoardDao;
@@ -22,6 +24,7 @@ import kosta.model.BoardDao;
 public class BoardController {
 	@Autowired
 	private BoardDao dao;
+	private String uploadDir = "C:/upload";
 
 	/*@RequestMapping(value="/board_insert",method=RequestMethod.GET)*/
 	@GetMapping("/board_insert")
@@ -36,6 +39,18 @@ public class BoardController {
 		if(errors.hasErrors()){
 			System.out.println("error 발생");
 			return "insert_form";
+		}
+		MultipartFile multipartFile = board.getUploadFile();
+		if(multipartFile != null){
+			String fname = multipartFile.getOriginalFilename();
+			board.setFname(fname);
+			
+			try {
+				multipartFile.transferTo(new File(uploadDir,fname)); // file 객체 생성 후 저장
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		int r = dao.insertBoard(board);
@@ -57,6 +72,13 @@ public class BoardController {
 		return "board_detail";
 	}
 	
+	@GetMapping("/board_download{fname}")
+	public String board_download(@PathVariable String fname, Model model)throws Exception{
+		File file = new File(uploadDir,fname);
+		model.addAttribute("downloadFile", file);
+		
+		return "downloadView"; // DownloadView.class를 bean에 추가 후 가능 => view 위치가 바뀌므로 resolver 설정 추가
+	}
 	
 //	public ModelAndView insertForm(){
 //		//url ��� : /board_insert.do => insert_form.jsp ����

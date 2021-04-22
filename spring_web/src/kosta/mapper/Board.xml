@@ -5,7 +5,7 @@
 <mapper namespace="kosta.mapper.BoardMapper">
 	<cache />
 	<insert id="insertBoard" parameterType="Board">
-		insert into board values(board_seq.nextval,#{title},#{writer},#{contents},SYSDATE,0)
+		insert into board values(board_seq.nextval,#{title},#{writer},#{contents},SYSDATE,0,#{fname})
 	</insert>
 	
 	<select id="boardList" resultType="Board">

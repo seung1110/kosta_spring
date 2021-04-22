@@ -6,6 +6,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 
 public class Board implements Serializable{
@@ -28,10 +29,12 @@ public class Board implements Serializable{
 	private String regdate;
 	private int hitcount;
 	private String fname;
+	private MultipartFile uploadFile;
 	
 	public Board(){}
 
-	public Board(int seq, String title, String writer, String contents, String regdate, int hitcount, String fname) {
+	public Board(int seq, String title, String writer, String contents, String regdate, int hitcount, String fname,
+			MultipartFile uploadFile) {
 		super();
 		this.seq = seq;
 		this.title = title;
@@ -40,6 +43,7 @@ public class Board implements Serializable{
 		this.regdate = regdate;
 		this.hitcount = hitcount;
 		this.fname = fname;
+		this.uploadFile = uploadFile;
 	}
 
 	public int getSeq() {
@@ -97,6 +101,15 @@ public class Board implements Serializable{
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
-	
+
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+
 	
 }

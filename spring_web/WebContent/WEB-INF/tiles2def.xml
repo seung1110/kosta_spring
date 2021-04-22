@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  tiles-definitions PUBLIC
+	"-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd"
+>
+
+<tiles-definitions>
+	
+	<definition name="base_layout" template="/view/module/template.jsp">
+		<put-attribute name="logo" value="/view/module/logo.jsp"/>
+		<put-attribute name="header" value="/view/module/header.jsp"/>
+		<put-attribute name="footer" value="/view/module/footer.jsp"/>
+	</definition>
+	
+	<definition name="insert_form" extends="base_layout">
+		<put-attribute name="body" value="/view/insert_form.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="board_list" extends="base_layout">
+		<put-attribute name="body" value="/view/board_list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="board_detail" extends="base_layout">
+		<put-attribute name="body" value="/view/board_detail.jsp"></put-attribute>
+	</definition>
+	
+</tiles-definitions>
+
+
+
+
+
+
+
+
+

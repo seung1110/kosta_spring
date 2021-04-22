@@ -16,6 +16,7 @@
 			<td>작성자</td>
 			<td>${board.writer}</td>
 		</tr>
+		<tr><td colspan="6"><a href="board_download?filename=${board.fname}">${board.fname}</a><td></tr>
 		<tr><td colspan="6">${board.contents}</td></tr>
 	</table>
 	<a href="board_list">목록</a>
