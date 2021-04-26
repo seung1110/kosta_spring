@@ -97,6 +97,7 @@ public class SampleController {
 		files.forEach(file->{
 			log.info("name : " + file.getOriginalFilename());
 			log.info("size : " + file.getSize());
+			
 		});
 	}
 }
