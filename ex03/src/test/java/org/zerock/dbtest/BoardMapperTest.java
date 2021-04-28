@@ -1,11 +1,14 @@
 package org.zerock.dbtest;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.Setter;
@@ -18,9 +21,26 @@ public class BoardMapperTest {
 	@Setter(onMethod_=@Autowired)
 	private BoardMapper mapper;
 	
+//	@Test
+//	public void testGetList(){
+//		mapper.getList().forEach(board->{log.info(board);});
+//	}
+	// pagin test
+//	@Test
+//	public void paginTest(){
+//		Criteria cri = new Criteria();
+//		cri.setAmount(20);
+//		cri.setPageNum(2);
+//		mapper.getListWithPaging(cri).forEach(board->{log.info(board);});
+//	}
+	
 	@Test
-	public void testGetList(){
-		mapper.getList().forEach(board->{log.info(board);});
+	public void testSearch(){
+			Criteria cri = new Criteria();
+			cri.setKeyword("test");
+			cri.setType("TC");
+			
+			mapper.getListWithPaging(cri).forEach(board->{log.info(board);});
 	}
 //	@Test
 //	public void insertBoard(){
